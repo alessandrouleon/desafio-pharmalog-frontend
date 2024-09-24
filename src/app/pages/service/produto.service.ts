@@ -13,7 +13,7 @@ import { ProdutoModel, ProdutoResponse } from '../models/produto';
 export class ProdutoService {
   private urlBase = environment.SERVER;
   public newUsers = new BehaviorSubject<boolean>(false);
-  private produtoIdSubject = new BehaviorSubject<ProdutoResponse | null>(null); // Alterado para um único ProdutoModel
+  private produtoIdSubject = new BehaviorSubject<ProdutoModel | null>(null);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,19 +31,20 @@ export class ProdutoService {
     return this.httpClient.get<ProdutoResponse>(`${this.urlBase}/products/search/1`);
   }
 
-  // public updateProduto(id: number, cadProduto: ProdutoModel): Observable<any> {
-  //   return this.httpClient.put<any>(`${this.urlBase}/imoveis/${id}`, cadProduto);
-  // }
+  public updateProduto(id: number, cadProduto: ProdutoModel): Observable<any> {
+    return this.httpClient.put<any>(`${this.urlBase}/products/${id}`, cadProduto);
+  }
 
-  // public deletar(id: number): Observable<any> { // Modificado para retornar Observable<any>
-  //   return this.httpClient.delete<any>(`${this.urlBase}/imoveis/${id}`);
-  // }
+  public deletar(id: number): Observable<any> {
 
-  // public setProdutoEdition(produto: ProdutoModel | null): void { // Alterado para ProdutoModel ou null
-  //   this.produtoIdSubject.next(produto);
-  // }
+    return this.httpClient.delete<any>(`${this.urlBase}/products/${id}`);
+  }
 
-  // public getProdutoEdition(): Observable<ProdutoModel | null> { // Alterado para Observable<ProdutoModel | null>
-  //   return this.produtoIdSubject.asObservable();
-  // }
+  public setProdutoEdition(produto: ProdutoModel): void {
+    this.produtoIdSubject.next(produto);
+  }
+
+  public getProdutoEdition(): Observable<ProdutoModel | null> {
+    return this.produtoIdSubject.asObservable();
+  }
 }

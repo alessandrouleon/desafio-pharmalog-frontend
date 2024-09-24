@@ -93,15 +93,7 @@
             que desejar.</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <div class="col-6">
-        <div style="justify-content: right; align-self: self-end; background-color: #ffff; float: right">
-          <mat-form-field class="form--input-width mr-3">
-            <mat-label>Buscar</mat-label>
-            <input matInput [(ngModel)]="search_text" (keyup)="filterSearch()" />
-            <mat-icon matSuffix><mat-icon>search</mat-icon></mat-icon>
-          </mat-form-field>
-        </div>
-      </div>
+
     </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="name">
@@ -137,8 +129,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" style="width: 11%;">
-          <!-- <button mat-button (click)="produtoEdition(element)"><mat-icon>edit</mat-icon></button>
-          <button mat-button (click)="deletar(element)"><mat-icon>delete_outline</mat-icon></button> -->
+          <button mat-button (click)="produtoEdition(element)"><mat-icon>edit</mat-icon></button>
+          <button mat-button (click)="deletar(element)"><mat-icon>delete_outline</mat-icon></button>
         </td>
       </ng-container>
 

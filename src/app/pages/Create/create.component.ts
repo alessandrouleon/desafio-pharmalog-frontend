@@ -17,7 +17,7 @@ interface Status {
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['name', 'code', 'description', 'price', 'quantityInStock', 'Categoria'];
+  displayedColumns: string[] = ['name', 'code', 'description', 'price', 'quantityInStock', 'Categoria', 'actions'];
   // dataSource = new MatTableDataSource<ProdutoResponse>();
   dataSource = new MatTableDataSource<ProdutoModel>();
 
@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.createUserForm();
     this.getProducts();
-    // this.updateEditImoveis();
+    this.updateEditProducts();
   }
 
   ngAfterViewInit(): void {
@@ -83,14 +83,12 @@ export class CreateComponent implements OnInit, AfterViewInit {
   }
 
   criarProduto(): void {
-    console.log("Chegou aqui:::");
 
     if (this.userForm.valid) {
       const produto: ProdutoModel = {
         ...this.userForm.value,
         active: this.userForm.value.active // Garantindo que seja booleano
       };
-      console.log("product::", produto);
 
       this.produtoService.createProduto(produto).subscribe(() => {
         this.getProducts();
@@ -99,33 +97,37 @@ export class CreateComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // produtoEdition(element: ProdutoModel): void {
-  //   this.hiddenBtnSave = true;
-  //   this.hiddenBtnUpdate = false;
-  //   this.produtoService.setProdutoEdition(element);
-  //   this.isEdition = true;
-  //   this.editionId = element.id ?? null; // Atribuir null se id for undefined
-  // }
 
-  // updateEditImoveis(): void {
-  //   this.produtoService.getProdutoEdition().subscribe((produto: ProdutoModel | null) => {
-  //     if (produto) {
-  //       this.userForm.patchValue(produto);
-  //       this.hiddenBtnSave = false;
-  //       this.hiddenBtnUpdate = true;
-  //     }
-  //   });
-  // }
+  produtoEdition(element: ProdutoModel): void {
+    this.hiddenBtnSave = true;
+    this.hiddenBtnUpdate = false;
+    this.produtoService.setProdutoEdition(element); // Agora aceitando ProdutoModel
+    this.isEdition = true;
+    this.editionId = element._id ?? null; // Atribuir null se id for undefined
+  }
 
-  // onUpdate(): void {
-  //   if (this.editionId !== null && this.userForm.valid) { // Verifica se editionId não é null
-  //     const produto: ProdutoModel = this.userForm.value;
-  //     this.produtoService.updateProduto(this.editionId, produto).subscribe(() => {
-  //       this.loadImoveis();
-  //       this.resetForm();
-  //     });
-  //   }
-  // }
+
+  updateEditProducts(): void {
+    this.produtoService.getProdutoEdition().subscribe((produto: ProdutoModel | null) => {
+      console.log("product::", produto);
+
+      if (produto) {
+        this.userForm.patchValue(produto);
+        this.hiddenBtnSave = false;
+        this.hiddenBtnUpdate = true;
+      }
+    });
+  }
+
+  onUpdate(): void {
+    if (this.editionId !== null && this.userForm.valid) { // Verifica se editionId não é null
+      const produto: ProdutoModel = this.userForm.value;
+      this.produtoService.updateProduto(this.editionId, produto).subscribe(() => {
+        this.getProducts();
+        this.resetForm();
+      });
+    }
+  }
 
   resetForm(): void {
     this.userForm.reset();
@@ -134,14 +136,6 @@ export class CreateComponent implements OnInit, AfterViewInit {
   }
 
 
-
-  // loadImoveis(): void {
-  //   this.produtoService.getAllImoveis().subscribe((resp: ProdutoModel) => {
-  //     console.log("resp::", resp);
-  //     this.dataSource.data = resp.products || [];
-  //   });
-  // }
-
   getProducts(): void {
     this.produtoService.getAllProducts().subscribe((resp: ProdutoResponse) => {
       this.dataSource.data = resp.products || [];
@@ -149,13 +143,13 @@ export class CreateComponent implements OnInit, AfterViewInit {
   }
 
 
-  // deletar(element: ProdutoModel): void {
-  //   if (element.id !== undefined) { // Verifica se id não é undefined
-  //     this.produtoService.deletar(element.id).subscribe(() => {
-  //       this.loadImoveis();
-  //     });
-  //   }
-  // }
+  deletar(element: ProdutoModel): void {
+    if (element._id !== undefined) { // Verifica se id não é undefined
+      this.produtoService.deletar(element._id).subscribe(() => {
+        this.getProducts();
+      });
+    }
+  }
 
   filterSearch(): void {
     const filteredData = this.dataSource.data.filter((produto: any) => {
