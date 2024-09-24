@@ -23,6 +23,7 @@ export class ProdutoService {
         ...produto,
         price: Number(produto.price),
         quantityInStock: Number(produto.quantityInStock),
+        active: false
       });
   }
 

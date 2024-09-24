@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
+import { CreateComponent } from '../pages/Create/create.component';
+// import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  { path: 'auth', component: AuthComponent },
-  { path: '', redirectTo: '/auth', pathMatch: 'full' }
+  { path: 'create', component: CreateComponent },
+  { path: '', redirectTo: '/create', pathMatch: 'full' }
 ];
 
 @NgModule({
