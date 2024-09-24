@@ -1,0 +1,16 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f3f3f3;}
+
+.card-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column !important;
+    margin: 0 auto;
+    margin-top: 8% !important;
+}
+
+::ng-deep.mat-mdc-text-field-wrapper {
+    background-color: #986c6c00 !important;
+  }
+

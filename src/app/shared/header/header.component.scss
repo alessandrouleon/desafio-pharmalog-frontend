@@ -1,0 +1,47 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-logo{
+    width: 3.3rem;
+  }
+
+  .mat-icon {
+    color: #565353;
+  }
+
+  .header-background{
+    background-size: 400% 400%;
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 3px 8px 0 rgba(97, 97, 97, 0.34);
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+
+  .vertical-line {
+    width: 1px;
+    background-color: #565353;
+    float: left;
+    height: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+
+  .main-menu {
+    vertical-align: middle;
+    padding-left: 0;
+    white-space: nowrap;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown:hover .dropbtn {background-color: rgb(8, 74, 121);}
+  
+  .dropdown:hover .marker {display: block;}

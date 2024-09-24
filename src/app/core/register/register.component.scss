@@ -1,0 +1,73 @@
+$primary-color: #d57683;
+$placeholder-color: #525252;
+
+.example-small-box,
+.example-large-box,
+.register-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 23px 0 23px 33px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 91%;
+  width: 90%;
+}
+
+.register-box {
+  height: 93%;
+  width: 90%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1%;
+
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .input-cadastro {
+    flex: 1;
+    margin: 5px;
+
+    @media (max-width: 600px) {
+      flex: 100%;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .btn-register {
+    background-color: $primary-color;
+    color: #ffffff;
+    border-radius: 20px;
+    width: 23%;
+    height: 44px;
+    margin-top: 20px;
+  }
+
+  ::placeholder {
+    color: $placeholder-color;
+  }
+
+  .mat-error {
+    color: red;
+  }
+}

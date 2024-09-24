@@ -1,0 +1,32 @@
+<div *ngIf="isLoggedIn" class="header-container">
+  <mat-toolbar class="header-background">
+    <div class="container d-flex justify-content-start">
+      <img mat-card-image src="assets/image/logo.png" class="header-logo">
+      <span style="margin-top: 15px; margin-left: 10px; color: #565353;">GESTÃO DE PRODUTOS</span>
+    </div>
+    <div class="container d-flex justify-content-end align-items-center">
+      <div class="main-menu d-flex justify-content-start">
+        <!-- <div class="dropdown semi-bold" *ngFor="let module of menuTree;">
+          <button class="btn" matTooltip="{{module.name}}" style="outline: none; padding: 16px;"
+            routerLink="{{module.routeLink}}">
+            <div class="all">
+              <mat-icon>{{module.icon}}</mat-icon>
+            </div>
+          </button>
+          <div class="vertical-line"></div>
+        </div> -->
+        <div class="vertical-line"></div>
+        <mat-menu #profile="matMenu">
+          <button mat-menu-item (click)="logout()" style="outline: none;">
+            <mat-icon>exit_to_app</mat-icon> Sair
+          </button>
+        </mat-menu>
+        <button mat-stroked-button [matMenuTriggerFor]="profile" matTooltip="Opções de usuário"
+          style="outline: none; padding: 32px; border: none;">
+          <span style="color: #565353" alt="user">{{username ? username : 'Unknown'}}</span>
+          <mat-icon class="material-icons-outlined">expand_more</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>
