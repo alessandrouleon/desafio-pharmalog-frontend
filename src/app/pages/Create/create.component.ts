@@ -18,7 +18,6 @@ interface Status {
 })
 export class CreateComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'code', 'description', 'price', 'quantityInStock', 'Categoria', 'actions'];
-  // dataSource = new MatTableDataSource<ProdutoResponse>();
   dataSource = new MatTableDataSource<ProdutoModel>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -87,7 +86,7 @@ export class CreateComponent implements OnInit, AfterViewInit {
     if (this.userForm.valid) {
       const produto: ProdutoModel = {
         ...this.userForm.value,
-        active: this.userForm.value.active // Garantindo que seja booleano
+        active: this.userForm.value.active
       };
 
       this.produtoService.createProduto(produto).subscribe(() => {
@@ -97,19 +96,17 @@ export class CreateComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   produtoEdition(element: ProdutoModel): void {
     this.hiddenBtnSave = true;
     this.hiddenBtnUpdate = false;
-    this.produtoService.setProdutoEdition(element); // Agora aceitando ProdutoModel
+    this.produtoService.setProdutoEdition(element);
     this.isEdition = true;
-    this.editionId = element._id ?? null; // Atribuir null se id for undefined
+    this.editionId = element._id ?? null;
   }
 
 
   updateEditProducts(): void {
     this.produtoService.getProdutoEdition().subscribe((produto: ProdutoModel | null) => {
-      console.log("product::", produto);
 
       if (produto) {
         this.userForm.patchValue(produto);

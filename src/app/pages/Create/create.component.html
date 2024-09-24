@@ -57,15 +57,6 @@
           {{ getErrorMessage('category') }}
         </mat-error>
       </mat-form-field>
-      <!--
-      <mat-form-field style="width: 40%; padding: 19px;">
-        <mat-label>Ativo</mat-label>
-        <mat-checkbox formControlName="active">Ativo</mat-checkbox>
-        <mat-error
-          *ngIf="userForm.get('active')?.invalid && (userForm.get('active')?.touched || userForm.get('active')?.dirty)">
-          {{ getErrorMessage('active') }}
-        </mat-error>
-      </mat-form-field> -->
 
     </form>
 
@@ -77,10 +68,6 @@
         (click)="criarProduto()">
         <span>ADICIONAR</span>
       </button>
-      <!-- <button class="btn-create" style="width: 111px;" mat-raised-button [hidden]="hiddenBtnUpdate"
-        (click)="onUpdate()">
-        <span>ATUALIZAR</span>
-      </button> -->
     </div>
   </mat-card>
 
