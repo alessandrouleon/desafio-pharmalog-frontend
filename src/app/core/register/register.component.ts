@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,32 +13,26 @@ export class RegisterComponent implements OnInit {
   hide = true;
 
   formFields = [
-    { label: 'Usuário', controlName: 'usuario', error: 'Usuário é obrigatório.' },
     { label: 'Nome', controlName: 'nome', error: 'Nome é obrigatório.' },
-    { label: 'Endereço', controlName: 'endereco', error: 'Endereço é obrigatório.' },
-    { label: 'Contato', controlName: 'contato', error: 'Contato é obrigatório.' },
-    { label: 'Cidade', controlName: 'cidade', error: 'Cidade é obrigatória.' },
-    { label: 'UF', controlName: 'estado', error: 'UF é obrigatório.' },
-    { label: 'CRECI', controlName: 'creci', error: 'CRECI é obrigatório.' },
-    { label: 'Senha', controlName: 'senha', error: 'A senha deve ter entre 5 e 10 caracteres, incluindo letra maiúscula, minúscula e caractere especial.', isPassword: true }
+    { label: 'Username', controlName: 'username', error: 'Nome de usuario obrigatorio.' },
+    { label: 'Senha', controlName: 'password', error: 'Senhaé obrigatório.' },
+    { label: 'email', controlName: 'email', error: 'Emailade é obrigatória.' },
+    { label: 'Administrador', controlName: 'isAdmin', error: 'Administrador é obrigatório.' },
   ];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      usuario: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
-      nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      endereco: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      contato: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      cidade: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      estado: ['', [Validators.required, Validators.pattern(/^[A-Z]{2}$/)]],
-      creci: ['', [Validators.required, Validators.pattern(/^[A-Z]{2}$/)]],
-      senha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10), this.senhaValidator]]
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
+      isAdmin: [true],
     });
   }
 

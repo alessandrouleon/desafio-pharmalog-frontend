@@ -4,9 +4,7 @@
       <div *ngFor="let field of formFields" class="input-cadastro">
         <mat-form-field class="full-width">
           <mat-label>{{ field.label }}</mat-label>
-          <input matInput [type]="field.isPassword ? (hide ? 'password' : 'text') : 'text'"
-            [formControlName]="field.controlName">
-          
+
           <!-- Mensagens de erro -->
           <mat-error *ngIf="registerForm.get(field.controlName)?.hasError('required')">{{ field.error }}</mat-error>
         </mat-form-field>
